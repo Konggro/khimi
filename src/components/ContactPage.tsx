@@ -4,26 +4,48 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 
-export function ContactPage() {
+interface ContactPageProps {
+  t: {
+    contact: {
+      title: string;
+      titleHighlight: string;
+      subtitle: string;
+      contactInfo: string;
+      location: string;
+      officeAddress: string;
+      office: string;
+      email: string;
+      phone: string;
+      sendMessage: string;
+      name: string;
+      yourName: string;
+      yourEmail: string;
+      subject: string;
+      messageSubject: string;
+      message: string;
+      yourMessage: string;
+      send: string;
+      officeHours: string;
+      mondayFriday: string;
+      businessHours: string;
+      responseTime: string;
+      responseTimeInfo: string;
+      firstName: string;
+      lastName: string;
+      company: string;
+      companyPlaceholder: string;
+      saturdaySunday: string;
+      closed: string;
+    };
+  };
+}
+
+export function ContactPage({ t }: ContactPageProps) {
+  const c = t.contact;
   const contactInfo = [
-    {
-      icon: Phone,
-      title: 'Phone',
-      detail: '+976 8804 2323',
-      link: 'tel:+97688042323',
-    },
-    {
-      icon: Mail,
-      title: 'Email',
-      detail: 'info@khimiconsulting.mn',
-      link: 'mailto:info@khimiconsulting.mn',
-    },
-    {
-      icon: MapPin,
-      title: 'Office',
-      detail: 'Sukhbaatar District, Ulaanbaatar, Mongolia',
-      link: '#',
-    },
+    { icon: Phone, title: c.phone, detail: '+976 8804 2323', link: 'tel:+97688042323' },
+    { icon: Mail, title: c.email, detail: 'info@khimiconsulting.mn', link: 'mailto:info@khimiconsulting.mn' },
+    { icon: MapPin, title: c.office, detail: c.officeAddress, link: '#' },
   ];
 
   return (
@@ -36,10 +58,10 @@ export function ContactPage() {
           className="text-center mb-16"
         >
           <h1 className="mb-4">
-            <span className="text-[#00d4ff]">Get in</span> Touch
+            <span className="text-[#00d4ff]">{c.title}</span> {c.titleHighlight}
           </h1>
           <p className="max-w-2xl mx-auto text-[#94a3b8]">
-            Have a question or need chemical consulting services? We're here to help.
+            {c.subtitle}
           </p>
         </motion.div>
 
@@ -51,7 +73,7 @@ export function ContactPage() {
             transition={{ delay: 0.2 }}
           >
             <div className="glass rounded-3xl p-8 mb-8">
-              <h2 className="mb-6 text-[#00d4ff]">Contact Information</h2>
+              <h2 className="mb-6 text-[#00d4ff]">{c.contactInfo}</h2>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
@@ -94,7 +116,7 @@ export function ContactPage() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="w-12 h-12 text-[#00d4ff] mx-auto mb-2" />
-                    <div className="text-[#00d4ff]">Ulaanbaatar, Mongolia</div>
+                    <div className="text-[#00d4ff]">{c.location}</div>
                   </div>
                 </div>
               </div>
@@ -108,38 +130,38 @@ export function ContactPage() {
             transition={{ delay: 0.4 }}
             className="glass rounded-3xl p-8"
           >
-            <h2 className="mb-6 text-[#00d4ff]">Send us a Message</h2>
+            <h2 className="mb-6 text-[#00d4ff]">{c.sendMessage}</h2>
             <form className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block mb-2 text-[#94a3b8]">First Name</label>
+                  <label className="block mb-2 text-[#94a3b8]">{c.firstName}</label>
                   <Input
                     type="text"
-                    placeholder="John"
+                    placeholder={c.yourName}
                     className="bg-[#0a0a0f]/50 border-[#00d4ff]/20 text-[#e0e7ff] placeholder:text-[#94a3b8] focus:border-[#00d4ff]"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 text-[#94a3b8]">Last Name</label>
+                  <label className="block mb-2 text-[#94a3b8]">{c.lastName}</label>
                   <Input
                     type="text"
-                    placeholder="Doe"
+                    placeholder={c.yourName}
                     className="bg-[#0a0a0f]/50 border-[#00d4ff]/20 text-[#e0e7ff] placeholder:text-[#94a3b8] focus:border-[#00d4ff]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block mb-2 text-[#94a3b8]">Email</label>
+                <label className="block mb-2 text-[#94a3b8]">{c.email}</label>
                 <Input
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder={c.yourEmail}
                   className="bg-[#0a0a0f]/50 border-[#00d4ff]/20 text-[#e0e7ff] placeholder:text-[#94a3b8] focus:border-[#00d4ff]"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-[#94a3b8]">Phone</label>
+                <label className="block mb-2 text-[#94a3b8]">{c.phone}</label>
                 <Input
                   type="tel"
                   placeholder="+976 xxxx xxxx"
@@ -148,25 +170,25 @@ export function ContactPage() {
               </div>
 
               <div>
-                <label className="block mb-2 text-[#94a3b8]">Company</label>
+                <label className="block mb-2 text-[#94a3b8]">{c.company}</label>
                 <Input
                   type="text"
-                  placeholder="Your company name"
+                  placeholder={c.companyPlaceholder}
                   className="bg-[#0a0a0f]/50 border-[#00d4ff]/20 text-[#e0e7ff] placeholder:text-[#94a3b8] focus:border-[#00d4ff]"
                 />
               </div>
 
               <div>
-                <label className="block mb-2 text-[#94a3b8]">Message</label>
+                <label className="block mb-2 text-[#94a3b8]">{c.message}</label>
                 <Textarea
-                  placeholder="Tell us about your project or inquiry..."
+                  placeholder={c.yourMessage}
                   rows={5}
                   className="bg-[#0a0a0f]/50 border-[#00d4ff]/20 text-[#e0e7ff] placeholder:text-[#94a3b8] focus:border-[#00d4ff] resize-none"
                 />
               </div>
 
               <Button className="w-full bg-[#00d4ff] hover:bg-[#00b8e6] text-[#0a0a0f] glow-effect">
-                Send Message
+                {c.send}
                 <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>
@@ -180,15 +202,15 @@ export function ContactPage() {
           viewport={{ once: true }}
           className="mt-16 glass rounded-3xl p-8 text-center"
         >
-          <h3 className="mb-4 text-[#00d4ff]">Office Hours</h3>
+          <h3 className="mb-4 text-[#00d4ff]">{c.officeHours}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div>
-              <div className="text-[#94a3b8] mb-2">Monday - Friday</div>
-              <div className="text-[#00d4ff]">9:00 AM - 6:00 PM</div>
+              <div className="text-[#94a3b8] mb-2">{c.mondayFriday}</div>
+              <div className="text-[#00d4ff]">{c.businessHours}</div>
             </div>
             <div>
-              <div className="text-[#94a3b8] mb-2">Saturday - Sunday</div>
-              <div className="text-[#00d4ff]">Closed</div>
+              <div className="text-[#94a3b8] mb-2">{c.saturdaySunday}</div>
+              <div className="text-[#00d4ff]">{c.closed}</div>
             </div>
           </div>
         </motion.div>
